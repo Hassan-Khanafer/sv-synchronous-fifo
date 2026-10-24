@@ -1,0 +1,21 @@
+
+# macOS
+.DS_Store
+
+# Python
+.venv/
+__pycache__/
+
+# Simulation outputs
+sim_build/
+obj_dir/
+work/
+*.vcd
+*.fst
+*.wlf
+
+# Logs
+*.log
+
+# Temporary files
+*.swp
