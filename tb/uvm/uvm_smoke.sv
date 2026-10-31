@@ -2,7 +2,7 @@ module uvm_smoke;
 
     import uvm_pkg::*;
     `include "uvm_macros.svh"
-
+    `include "fifo_item.sv"
     class smoke_test extends uvm_test;
 
         `uvm_component_utils(smoke_test)
@@ -12,13 +12,30 @@ module uvm_smoke;
             super.new(name, parent);
         endfunction
 
-        task run_phase(uvm_phase phase);
-            phase.raise_objection(this);
+    task run_phase(uvm_phase phase);
+    
+        fifo_item tx;
 
-            `uvm_info("SMOKE", "My first UVM test is running!", UVM_LOW)
+        phase.raise_objection(this);
 
-            phase.drop_objection(this);
-        endtask
+        // Request a fifo_item object from the UVM factory
+        tx = fifo_item::type_id::create("tx");
+
+        // Assign values to the transaction
+        tx.write   = 1;
+        tx.read    = 0;
+        tx.data_in = 8'hA5;
+        tx.reset   = 1;
+
+        // Print the transaction's values
+        `uvm_info("FIFO_ITEM",
+            $sformatf("write=%0b read=%0b data_in=%h reset=%0b",
+                        tx.write, tx.read, tx.data_in, tx.reset),
+            UVM_LOW)
+
+        phase.drop_objection(this);
+
+    endtask
 
     endclass
 
