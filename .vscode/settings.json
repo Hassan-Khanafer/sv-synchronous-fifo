@@ -1,0 +1,17 @@
+{
+    "files.associations": {
+      "*.sv": "systemverilog",
+      "*.svh": "systemverilog"
+    },
+    "editor.tabSize": 4,
+    "editor.insertSpaces": true,
+    "editor.formatOnSave": false,
+    "verilog.linting.linter": "none",
+    "files.exclude": {
+      "**/obj_dir": true
+    },
+    "files.watcherExclude": {
+      "**/obj_dir/**": true
+    }
+  }
+  
